@@ -58,17 +58,6 @@ A Flutter application for managing **Equb** — a traditional Ethiopian rotating
 
 ---
 
-## API Endpoints Used
-
-| Method   | Endpoint       | Description                                    |
-| -------- | -------------- | ---------------------------------------------- |
-| `GET`    | `/members`     | Fetch all members (filtered by groupId in app) |
-| `POST`   | `/members`     | Create a new member                            |
-| `PUT`    | `/members/:id` | Update a member                                |
-| `DELETE` | `/members/:id` | Delete a member                                |
-
----
-
 ---
 
 ## How It Works
