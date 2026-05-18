@@ -69,20 +69,6 @@ A Flutter application for managing **Equb** — a traditional Ethiopian rotating
 
 ---
 
-## 📦 Member Data Model
-
-```json
-{
-  "id": "1",
-  "groupId": "1748291234567",
-  "name": "Abebe Girma",
-  "phone": "0912345678",
-  "contribution": 500,
-  "status": "Not Paid",
-  "roundReceived": 0
-}
-```
-
 ---
 
 ## How It Works
