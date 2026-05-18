@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../models/member.dart';
-import '../theme/ui_config.dart';
 
 class MemberCard extends StatelessWidget {
   final Member member;
@@ -27,10 +26,10 @@ class MemberCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           child: Container(
             decoration: BoxDecoration(
-              color: AppColors.cardBg,
+              color: const Color(0xFFEDD98A),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: AppColors.primaryDark.withValues(alpha: 0.2),
+                color: const Color(0xFFD4A843).withValues(alpha: 0.2),
               ),
             ),
             child: Padding(
@@ -47,36 +46,36 @@ class MemberCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: AppColors.textDark,
+                            color: Color(0xFF2C1F0E),
                           ),
                         ),
                         const SizedBox(height: 2),
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.phone_rounded,
                               size: 11,
-                              color: AppColors.textLight,
+                              color: Color(0xFF8C7A5A),
                             ),
                             const SizedBox(width: 3),
                             Text(
                               member.phone,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 11,
-                                color: AppColors.textLight,
+                                color: Color(0xFF8C7A5A),
                               ),
                             ),
                             const SizedBox(width: 10),
-                            Icon(
+                            const Icon(
                               Icons.attach_money_rounded,
                               size: 11,
-                              color: AppColors.textLight,
+                              color: Color(0xFF8C7A5A),
                             ),
                             Text(
                               '${member.contribution.toStringAsFixed(0)} ETB',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 11,
-                                color: AppColors.textLight,
+                                color: Color(0xFF8C7A5A),
                               ),
                             ),
                           ],
@@ -86,10 +85,9 @@ class MemberCard extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   const Icon(
                     Icons.chevron_right_rounded,
-                    color: AppColors.textLight,
+                    color: Color(0xFF8C7A5A),
                     size: 20,
                   ),
                 ],
@@ -109,7 +107,7 @@ class MemberCard extends StatelessWidget {
           height: 7,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: isPaid ? AppColors.paid : AppColors.notPaid,
+            color: isPaid ? const Color(0xFF4A7C59) : const Color(0xFFB85C38),
           ),
         ),
         const SizedBox(width: 4),
@@ -117,7 +115,7 @@ class MemberCard extends StatelessWidget {
           isPaid ? 'Paid' : 'Not Paid',
           style: TextStyle(
             fontSize: 11,
-            color: isPaid ? AppColors.paid : AppColors.notPaid,
+            color: isPaid ? const Color(0xFF4A7C59) : const Color(0xFFB85C38),
             fontWeight: FontWeight.w600,
           ),
         ),

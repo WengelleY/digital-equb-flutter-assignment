@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../models/member.dart';
 import '../providers/member_provider.dart';
-import '../theme/ui_config.dart';
 
 class AddMemberScreen extends StatefulWidget {
   final String groupId;
@@ -29,9 +28,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
   }
 
   Future<void> _saveMember() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+    if (!_formKey.currentState!.validate()) return;
     setState(() => _isSaving = true);
 
     final member = Member(
@@ -50,10 +47,10 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     if (mounted) {
       if (success) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text(
               'Member added successfully!',
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),
@@ -87,7 +84,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFF5DFA0),
       appBar: AppBar(
         title: const Text('Add New Member'),
         leading: IconButton(
@@ -108,12 +105,12 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   width: 80,
                   height: 80,
                   decoration: BoxDecoration(
-                    color: AppColors.accent.withValues(alpha: 0.12),
+                    color: const Color(0xFF4A7C59).withValues(alpha: 0.12),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
                     Icons.person_add_rounded,
-                    color: AppColors.accent,
+                    color: Color(0xFF4A7C59),
                     size: 40,
                   ),
                 ),
@@ -125,7 +122,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.textDark,
+                    color: Color(0xFF2C1F0E),
                   ),
                 ),
               ),
@@ -141,7 +138,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   hintText: 'e.g. Abebe Girma',
                   prefixIcon: Icon(
                     Icons.person_outline_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                 ),
                 validator: (val) {
@@ -167,7 +164,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   hintText: 'e.g. 0912345678',
                   prefixIcon: Icon(
                     Icons.phone_outlined,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                 ),
                 validator: (val) {
@@ -197,11 +194,11 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   hintText: 'e.g. 500',
                   prefixIcon: Icon(
                     Icons.attach_money_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                   suffixText: 'ETB',
                   suffixStyle: TextStyle(
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -230,16 +227,16 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                             height: 16,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              color: AppColors.white,
+                              color: Color(0xFFFFFFFF),
                             ),
                           )
                         : const Icon(Icons.save_rounded),
                     label: Text(_isSaving ? 'Saving...' : 'Save Member'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.accent,
-                      disabledBackgroundColor: AppColors.accent.withValues(
-                        alpha: 0.6,
-                      ),
+                      backgroundColor: const Color(0xFF4A7C59),
+                      disabledBackgroundColor: const Color(
+                        0xFF4A7C59,
+                      ).withValues(alpha: 0.6),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 28,
                         vertical: 10,
@@ -256,7 +253,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
                   onPressed: () => Navigator.pop(context),
                   child: const Text(
                     'Cancel',
-                    style: TextStyle(color: AppColors.textMid),
+                    style: TextStyle(color: Color(0xFF5C4A2A)),
                   ),
                 ),
               ),
@@ -271,7 +268,7 @@ class _AddMemberScreenState extends State<AddMemberScreen> {
     return Text(
       text,
       style: const TextStyle(
-        color: AppColors.textDark,
+        color: Color(0xFF2C1F0E),
         fontWeight: FontWeight.w600,
         fontSize: 14,
       ),

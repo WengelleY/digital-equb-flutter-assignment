@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/equb_group.dart';
 import '../providers/member_provider.dart';
-import '../theme/ui_config.dart';
 import '../widgets/member_card.dart';
 import '../widgets/stat_chip.dart';
 import 'add_member_screen.dart';
@@ -36,10 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFF5DFA0),
       appBar: _buildAppBar(),
       body: RefreshIndicator(
-        color: AppColors.accent,
+        color: const Color(0xFF4A7C59),
         onRefresh: () => context.read<MemberProvider>().fetchMembers(
           groupId: widget.group.id,
         ),
@@ -66,20 +65,20 @@ class _HomeScreenState extends State<HomeScreen> {
           'Add Member',
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
-        backgroundColor: AppColors.accent,
-        foregroundColor: AppColors.white,
+        backgroundColor: const Color(0xFF4A7C59),
+        foregroundColor: const Color(0xFFFFFFFF),
       ),
     );
   }
 
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFF5DFA0),
       elevation: 0,
       leading: IconButton(
         icon: const Icon(
           Icons.arrow_back_ios_new_rounded,
-          color: AppColors.textDark,
+          color: Color(0xFF2C1F0E),
         ),
         onPressed: () => Navigator.pop(context),
       ),
@@ -102,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
               fontSize: 16,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.8,
-              color: AppColors.textDark,
+              color: Color(0xFF2C1F0E),
             ),
           ),
         ],
@@ -118,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
         style: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: AppColors.textDark,
+          color: Color(0xFF2C1F0E),
         ),
       ),
     );
@@ -130,20 +129,20 @@ class _HomeScreenState extends State<HomeScreen> {
       child: TextField(
         controller: _searchController,
         onChanged: (val) => context.read<MemberProvider>().setSearchQuery(val),
-        style: const TextStyle(color: AppColors.textDark, fontSize: 14),
+        style: const TextStyle(color: Color(0xFF2C1F0E), fontSize: 14),
         decoration: InputDecoration(
           hintText: 'Quick Search...',
-          hintStyle: TextStyle(color: AppColors.textLight, fontSize: 14),
+          hintStyle: const TextStyle(color: Color(0xFF8C7A5A), fontSize: 14),
           prefixIcon: const Icon(
             Icons.search_rounded,
-            color: AppColors.textMid,
+            color: Color(0xFF5C4A2A),
             size: 20,
           ),
           suffixIcon: _searchController.text.isNotEmpty
               ? IconButton(
                   icon: const Icon(
                     Icons.clear_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                     size: 18,
                   ),
                   onPressed: () {
@@ -157,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
             horizontal: 16,
           ),
           filled: true,
-          fillColor: AppColors.white.withValues(alpha: 0.65),
+          fillColor: const Color(0xFFFFFFFF).withValues(alpha: 0.65),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide: BorderSide.none,
@@ -165,13 +164,13 @@ class _HomeScreenState extends State<HomeScreen> {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide: BorderSide(
-              color: AppColors.primaryDark.withValues(alpha: 0.3),
+              color: const Color(0xFFD4A843).withValues(alpha: 0.3),
               width: 1,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
-            borderSide: const BorderSide(color: AppColors.accent, width: 1.5),
+            borderSide: const BorderSide(color: Color(0xFF4A7C59), width: 1.5),
           ),
         ),
       ),
@@ -188,14 +187,14 @@ class _HomeScreenState extends State<HomeScreen> {
               label: 'Total People',
               value: '${provider.totalMembers}',
               icon: Icons.people_rounded,
-              color: AppColors.accent,
+              color: const Color(0xFF4A7C59),
             ),
             const SizedBox(width: 10),
             StatChip(
               label: 'Total Money',
               value: '${provider.totalMoney.toStringAsFixed(0)} ETB',
               icon: Icons.monetization_on_rounded,
-              color: const Color.fromARGB(255, 97, 69, 33),
+              color: const Color(0xFF614521),
             ),
           ],
         ),
@@ -212,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 170, 159, 84),
+              color: const Color(0xFFAAA054),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
@@ -220,14 +219,14 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const Icon(
                   Icons.rotate_right_rounded,
-                  color: AppColors.white,
+                  color: Color(0xFFFFFFFF),
                   size: 16,
                 ),
                 const SizedBox(width: 6),
                 Text(
                   'Current Round: ${provider.currentRound}',
                   style: const TextStyle(
-                    color: AppColors.white,
+                    color: Color(0xFFFFFFFF),
                     fontWeight: FontWeight.bold,
                     fontSize: 13,
                   ),
@@ -247,9 +246,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Row(
           children: ['All', 'Paid', 'Not Paid'].map((filter) {
             final selected = provider.filterStatus == filter;
-            Color chipColor = AppColors.accent;
-            if (filter == 'Paid') chipColor = AppColors.paid;
-            if (filter == 'Not Paid') chipColor = AppColors.notPaid;
+            Color chipColor = const Color(0xFF4A7C59);
+            if (filter == 'Paid') chipColor = const Color(0xFF4A7C59);
+            if (filter == 'Not Paid') chipColor = const Color(0xFFB85C38);
             return Padding(
               padding: const EdgeInsets.only(right: 8),
               child: GestureDetector(
@@ -263,18 +262,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: selected
                         ? chipColor
-                        : AppColors.white.withValues(alpha: 0.55),
+                        : const Color(0xFFFFFFFF).withValues(alpha: 0.55),
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: selected
                           ? chipColor
-                          : AppColors.primaryDark.withValues(alpha: 0.3),
+                          : const Color(0xFFD4A843).withValues(alpha: 0.3),
                     ),
                   ),
                   child: Text(
                     filter,
                     style: TextStyle(
-                      color: selected ? AppColors.white : AppColors.textMid,
+                      color: selected
+                          ? const Color(0xFFFFFFFF)
+                          : const Color(0xFF5C4A2A),
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
                     ),
@@ -293,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, provider, child) {
         if (provider.isLoading && provider.allMembers.isEmpty) {
           return const Center(
-            child: CircularProgressIndicator(color: AppColors.accent),
+            child: CircularProgressIndicator(color: Color(0xFF4A7C59)),
           );
         }
 
@@ -307,14 +308,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   const Icon(
                     Icons.wifi_off_rounded,
-                    color: AppColors.notPaid,
+                    color: Color(0xFFB85C38),
                     size: 52,
                   ),
                   const SizedBox(height: 14),
                   const Text(
                     'Could not load members',
                     style: TextStyle(
-                      color: AppColors.textDark,
+                      color: Color(0xFF2C1F0E),
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -324,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     provider.errorMessage,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: AppColors.textMid,
+                      color: Color(0xFF5C4A2A),
                       fontSize: 12,
                     ),
                   ),
@@ -346,9 +347,9 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.group_off_rounded,
-                  color: AppColors.textLight,
+                  color: Color(0xFF8C7A5A),
                   size: 52,
                 ),
                 const SizedBox(height: 14),
@@ -358,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       : 'No members yet.\nTap + to add the first member!',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                     fontSize: 15,
                   ),
                 ),

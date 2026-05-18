@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../models/equb_group.dart';
 import '../providers/group_provider.dart';
-import '../theme/ui_config.dart';
 import 'home_screen.dart';
 
 class GroupsScreen extends StatelessWidget {
@@ -12,9 +11,9 @@ class GroupsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFF5DFA0),
       appBar: AppBar(
-        backgroundColor: AppColors.background,
+        backgroundColor: const Color(0xFFF5DFA0),
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +34,7 @@ class GroupsScreen extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.8,
-                color: AppColors.textDark,
+                color: Color(0xFF2C1F0E),
               ),
             ),
           ],
@@ -48,24 +47,24 @@ class GroupsScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.group_off_rounded,
                     size: 64,
-                    color: AppColors.textLight,
+                    color: Color(0xFF8C7A5A),
                   ),
                   const SizedBox(height: 16),
                   const Text(
                     'No groups created yet',
                     style: TextStyle(
                       fontSize: 16,
-                      color: AppColors.textMid,
+                      color: Color(0xFF5C4A2A),
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Text(
+                  const Text(
                     'Tap + to create your first Equb group',
-                    style: TextStyle(fontSize: 13, color: AppColors.textLight),
+                    style: TextStyle(fontSize: 13, color: Color(0xFF8C7A5A)),
                   ),
                 ],
               ),
@@ -89,8 +88,8 @@ class GroupsScreen extends StatelessWidget {
           'Add Group',
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
-        backgroundColor: AppColors.accent,
-        foregroundColor: AppColors.white,
+        backgroundColor: const Color(0xFF4A7C59),
+        foregroundColor: const Color(0xFFFFFFFF),
       ),
     );
   }
@@ -123,14 +122,14 @@ class _GroupCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
-            color: AppColors.cardBg,
+            color: const Color(0xFFEDD98A),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.primaryDark.withValues(alpha: 0.28),
+              color: const Color(0xFFD4A843).withValues(alpha: 0.28),
             ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.shadow.withValues(alpha: 0.08),
+                color: const Color(0x33000000).withValues(alpha: 0.08),
                 blurRadius: 6,
                 offset: const Offset(0, 3),
               ),
@@ -148,7 +147,7 @@ class _GroupCard extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.textDark,
+                        color: Color(0xFF2C1F0E),
                       ),
                     ),
                     const SizedBox(height: 3),
@@ -174,7 +173,7 @@ class _GroupCard extends StatelessWidget {
               IconButton(
                 icon: const Icon(
                   Icons.delete_outline_rounded,
-                  color: AppColors.notPaid,
+                  color: Color(0xFFB85C38),
                   size: 22,
                 ),
                 onPressed: () => _confirmDelete(context),
@@ -182,7 +181,7 @@ class _GroupCard extends StatelessWidget {
               ),
               const Icon(
                 Icons.chevron_right_rounded,
-                color: AppColors.textLight,
+                color: Color(0xFF8C7A5A),
                 size: 20,
               ),
             ],
@@ -195,7 +194,7 @@ class _GroupCard extends StatelessWidget {
   Widget _pill(IconData icon, String label) {
     return Text(
       label,
-      style: const TextStyle(fontSize: 11, color: AppColors.textLight),
+      style: const TextStyle(fontSize: 11, color: Color(0xFF8C7A5A)),
     );
   }
 
@@ -203,22 +202,22 @@ class _GroupCard extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: AppColors.background,
+        backgroundColor: const Color(0xFFF5DFA0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: const Text(
           'Delete Group',
-          style: TextStyle(color: AppColors.textDark),
+          style: TextStyle(color: Color(0xFF2C1F0E)),
         ),
         content: Text(
           'Are you sure you want to delete "${group.name}"?',
-          style: const TextStyle(color: AppColors.textMid),
+          style: const TextStyle(color: Color(0xFF5C4A2A)),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: const Text(
               'Cancel',
-              style: TextStyle(color: AppColors.textMid),
+              style: TextStyle(color: Color(0xFF5C4A2A)),
             ),
           ),
           ElevatedButton(
@@ -237,7 +236,9 @@ class _GroupCard extends StatelessWidget {
                 ),
               );
             },
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.notPaid),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFB85C38),
+            ),
             child: const Text('Delete'),
           ),
         ],
@@ -272,9 +273,7 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
   }
 
   Future<void> _save() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+    if (!_formKey.currentState!.validate()) return;
     setState(() => _isSaving = true);
 
     final group = EqubGroup(
@@ -298,7 +297,7 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
       ),
       child: Container(
         decoration: const BoxDecoration(
-          color: AppColors.background,
+          color: Color(0xFFF5DFA0),
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
         ),
         padding: const EdgeInsets.fromLTRB(24, 16, 24, 32),
@@ -314,7 +313,7 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                   width: 40,
                   height: 4,
                   decoration: BoxDecoration(
-                    color: AppColors.textLight.withValues(alpha: 0.4),
+                    color: const Color(0xFF8C7A5A).withValues(alpha: 0.4),
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -325,7 +324,7 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                 style: TextStyle(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.textDark,
+                  color: Color(0xFF2C1F0E),
                 ),
               ),
               const SizedBox(height: 20),
@@ -340,7 +339,7 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                   hintText: 'e.g. Addis Equb Group A',
                   prefixIcon: Icon(
                     Icons.drive_file_rename_outline_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                 ),
                 validator: (v) => (v == null || v.trim().isEmpty)
@@ -364,14 +363,12 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                   hintText: 'e.g. 1000',
                   prefixIcon: Icon(
                     Icons.attach_money_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                   suffixText: 'ETB',
                 ),
                 validator: (v) {
-                  if (v == null || v.trim().isEmpty) {
-                    return 'Required';
-                  }
+                  if (v == null || v.trim().isEmpty) return 'Required';
                   if ((double.tryParse(v) ?? 0) <= 0) {
                     return 'Enter a valid amount';
                   }
@@ -395,13 +392,15 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         decoration: BoxDecoration(
                           color: selected
-                              ? AppColors.accent
-                              : AppColors.white.withValues(alpha: 0.55),
+                              ? const Color(0xFF4A7C59)
+                              : const Color(0xFFFFFFFF).withValues(alpha: 0.55),
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
                             color: selected
-                                ? AppColors.accent
-                                : AppColors.primaryDark.withValues(alpha: 0.3),
+                                ? const Color(0xFF4A7C59)
+                                : const Color(
+                                    0xFFD4A843,
+                                  ).withValues(alpha: 0.3),
                           ),
                         ),
                         child: Text(
@@ -411,8 +410,8 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
                             color: selected
-                                ? AppColors.white
-                                : AppColors.textMid,
+                                ? const Color(0xFFFFFFFF)
+                                : const Color(0xFF5C4A2A),
                           ),
                         ),
                       ),
@@ -433,13 +432,11 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                   hintText: 'e.g. 10',
                   prefixIcon: Icon(
                     Icons.people_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                 ),
                 validator: (v) {
-                  if (v == null || v.trim().isEmpty) {
-                    return 'Required';
-                  }
+                  if (v == null || v.trim().isEmpty) return 'Required';
                   if ((int.tryParse(v) ?? 0) < 2) {
                     return 'Equb needs at least 2 members';
                   }
@@ -459,13 +456,13 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
                           height: 18,
                           child: CircularProgressIndicator(
                             strokeWidth: 2,
-                            color: AppColors.white,
+                            color: Color(0xFFFFFFFF),
                           ),
                         )
                       : const Icon(Icons.check_rounded),
                   label: Text(_isSaving ? 'Saving...' : 'Create Group'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.accent,
+                    backgroundColor: const Color(0xFF4A7C59),
                   ),
                 ),
               ),
@@ -479,7 +476,7 @@ class _AddGroupSheetState extends State<_AddGroupSheet> {
   Widget _label(String text) => Text(
     text,
     style: const TextStyle(
-      color: AppColors.textDark,
+      color: Color(0xFF2C1F0E),
       fontWeight: FontWeight.w600,
       fontSize: 13,
     ),

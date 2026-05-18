@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/member.dart';
 import '../providers/member_provider.dart';
-import '../theme/ui_config.dart';
 import 'edit_member_screen.dart';
 
 class MemberDetailScreen extends StatelessWidget {
@@ -19,7 +18,7 @@ class MemberDetailScreen extends StatelessWidget {
 
         if (member == null) {
           return Scaffold(
-            backgroundColor: AppColors.background,
+            backgroundColor: const Color(0xFFF5DFA0),
             appBar: AppBar(title: const Text('Member Detail')),
             body: const Center(child: Text('Member not found')),
           );
@@ -28,7 +27,7 @@ class MemberDetailScreen extends StatelessWidget {
         final isPaid = member.status == 'Paid';
 
         return Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: const Color(0xFFF5DFA0),
           appBar: AppBar(
             title: const Text('Member Detail'),
             leading: IconButton(
@@ -37,7 +36,7 @@ class MemberDetailScreen extends StatelessWidget {
             ),
             actions: [
               IconButton(
-                icon: const Icon(Icons.edit_rounded, color: AppColors.accent),
+                icon: const Icon(Icons.edit_rounded, color: Color(0xFF4A7C59)),
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -49,7 +48,7 @@ class MemberDetailScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(
                   Icons.delete_rounded,
-                  color: AppColors.notPaid,
+                  color: Color(0xFFB85C38),
                 ),
                 onPressed: () => _confirmDelete(context, provider, member),
                 tooltip: 'Delete Member',
@@ -69,9 +68,13 @@ class MemberDetailScreen extends StatelessWidget {
                         height: 90,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppColors.accent.withValues(alpha: 0.15),
+                          color: const Color(
+                            0xFF4A7C59,
+                          ).withValues(alpha: 0.15),
                           border: Border.all(
-                            color: AppColors.accent.withValues(alpha: 0.35),
+                            color: const Color(
+                              0xFF4A7C59,
+                            ).withValues(alpha: 0.35),
                             width: 2,
                           ),
                         ),
@@ -83,7 +86,7 @@ class MemberDetailScreen extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 36,
                               fontWeight: FontWeight.bold,
-                              color: AppColors.accent,
+                              color: Color(0xFF4A7C59),
                             ),
                           ),
                         ),
@@ -94,7 +97,7 @@ class MemberDetailScreen extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: AppColors.textDark,
+                          color: Color(0xFF2C1F0E),
                         ),
                       ),
                       const SizedBox(height: 6),
@@ -130,7 +133,9 @@ class MemberDetailScreen extends StatelessWidget {
                     Icons.payment_rounded,
                     'Payment Status',
                     member.status,
-                    valueColor: isPaid ? AppColors.paid : AppColors.notPaid,
+                    valueColor: isPaid
+                        ? const Color(0xFF4A7C59)
+                        : const Color(0xFFB85C38),
                   ),
                 ]),
                 const SizedBox(height: 28),
@@ -149,13 +154,13 @@ class MemberDetailScreen extends StatelessWidget {
                                 height: 16,
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
-                                  color: AppColors.white,
+                                  color: Color(0xFFFFFFFF),
                                 ),
                               )
                             : const Icon(Icons.check_circle_rounded),
                         label: const Text('Mark as Paid'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.paid,
+                          backgroundColor: const Color(0xFF4A7C59),
                           padding: const EdgeInsets.symmetric(
                             horizontal: 28,
                             vertical: 10,
@@ -181,12 +186,18 @@ class MemberDetailScreen extends StatelessWidget {
           style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.bold,
-            color: AppColors.textMid,
+            color: Color(0xFF5C4A2A),
             letterSpacing: 0.8,
           ),
         ),
         const SizedBox(height: 8),
         Card(
+          color: const Color(0xFFEDD98A),
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          shadowColor: const Color(0x33000000),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: Column(children: children),
@@ -206,13 +217,13 @@ class MemberDetailScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         children: [
-          Icon(icon, color: AppColors.accent, size: 20),
+          Icon(icon, color: const Color(0xFF4A7C59), size: 20),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
               label,
               style: const TextStyle(
-                color: AppColors.textMid,
+                color: Color(0xFF5C4A2A),
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
@@ -221,7 +232,7 @@ class MemberDetailScreen extends StatelessWidget {
           Text(
             value,
             style: TextStyle(
-              color: valueColor ?? AppColors.textDark,
+              color: valueColor ?? const Color(0xFF2C1F0E),
               fontWeight: FontWeight.bold,
               fontSize: 14,
             ),
@@ -260,22 +271,22 @@ class MemberDetailScreen extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: AppColors.background,
+        backgroundColor: const Color(0xFFF5DFA0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: const Text(
           'Remove Member',
-          style: TextStyle(color: AppColors.textDark),
+          style: TextStyle(color: Color(0xFF2C1F0E)),
         ),
         content: Text(
           'Are you sure you want to remove ${member.name}?',
-          style: const TextStyle(color: AppColors.textMid),
+          style: const TextStyle(color: Color(0xFF5C4A2A)),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
             child: const Text(
               'Cancel',
-              style: TextStyle(color: AppColors.textMid),
+              style: TextStyle(color: Color(0xFF5C4A2A)),
             ),
           ),
           ElevatedButton(
@@ -297,7 +308,9 @@ class MemberDetailScreen extends StatelessWidget {
                 );
               }
             },
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.notPaid),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFB85C38),
+            ),
             child: const Text('Remove'),
           ),
         ],

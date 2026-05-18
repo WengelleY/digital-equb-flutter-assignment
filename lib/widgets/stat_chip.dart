@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../theme/ui_config.dart';
 
 class StatChip extends StatelessWidget {
   final String label;
@@ -21,12 +20,12 @@ class StatChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
-          color: color, // solid — no opacity
+          color: color,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
           children: [
-            Icon(icon, color: AppColors.white, size: 16),
+            Icon(icon, color: const Color(0xFFFFFFFF), size: 16),
             const SizedBox(width: 6),
             Expanded(
               child: Column(
@@ -35,7 +34,7 @@ class StatChip extends StatelessWidget {
                   Text(
                     value,
                     style: const TextStyle(
-                      color: AppColors.white,
+                      color: Color(0xFFFFFFFF),
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
                     ),
@@ -43,7 +42,10 @@ class StatChip extends StatelessWidget {
                   ),
                   Text(
                     label,
-                    style: const TextStyle(color: AppColors.white, fontSize: 9),
+                    style: const TextStyle(
+                      color: Color(0xFFFFFFFF),
+                      fontSize: 9,
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

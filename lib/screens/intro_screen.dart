@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/group_provider.dart';
-import '../theme/ui_config.dart';
 import 'groups_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -62,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFF5DFA0),
       body: Center(
         child: FadeTransition(
           opacity: _fadeAnim,
@@ -78,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen>
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.primaryDark.withValues(alpha: 0.35),
+                        color: const Color(0xFFD4A843).withValues(alpha: 0.35),
                         blurRadius: 22,
                         offset: const Offset(0, 8),
                       ),
@@ -97,14 +96,14 @@ class _SplashScreenState extends State<SplashScreen>
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.textDark,
+                    color: Color(0xFF2C1F0E),
                     letterSpacing: 2.5,
                   ),
                 ),
                 const SizedBox(height: 6),
                 const Text(
                   'Rotating Savings, Simplified',
-                  style: TextStyle(fontSize: 13, color: AppColors.textMid),
+                  style: TextStyle(fontSize: 13, color: Color(0xFF5C4A2A)),
                 ),
                 const SizedBox(height: 48),
                 const SizedBox(
@@ -112,7 +111,9 @@ class _SplashScreenState extends State<SplashScreen>
                   height: 32,
                   child: CircularProgressIndicator(
                     strokeWidth: 2.5,
-                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.accent),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Color(0xFF4A7C59),
+                    ),
                   ),
                 ),
               ],

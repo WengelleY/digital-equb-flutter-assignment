@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../models/member.dart';
 import '../providers/member_provider.dart';
-import '../theme/ui_config.dart';
 
 class EditMemberScreen extends StatefulWidget {
   final Member member;
@@ -47,9 +46,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
   }
 
   Future<void> _saveChanges() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
+    if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isSaving = true);
 
@@ -76,8 +73,8 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
     if (mounted) {
       if (success) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text(
+          const SnackBar(
+            content: Text(
               'Member updated successfully!',
               style: TextStyle(color: Colors.black),
             ),
@@ -107,7 +104,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFFF5DFA0),
       appBar: AppBar(
         title: const Text('Edit Member'),
         leading: IconButton(
@@ -128,7 +125,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                   width: 70,
                   height: 70,
                   decoration: BoxDecoration(
-                    color: AppColors.accent.withValues(alpha: 0.12),
+                    color: const Color(0xFF4A7C59).withValues(alpha: 0.12),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -139,7 +136,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.accent,
+                        color: Color(0xFF4A7C59),
                       ),
                     ),
                   ),
@@ -150,7 +147,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                 child: Text(
                   'Editing: ${widget.member.name}',
                   style: const TextStyle(
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                     fontSize: 13,
                   ),
                 ),
@@ -166,16 +163,14 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.person_outline_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                 ),
                 validator: (val) {
                   if (val == null || val.trim().isEmpty) {
                     return 'Name is required';
                   }
-                  if (val.trim().length < 2) {
-                    return 'Name too short';
-                  }
+                  if (val.trim().length < 2) return 'Name too short';
                   return null;
                 },
               ),
@@ -191,7 +186,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.phone_outlined,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                 ),
                 validator: (val) {
@@ -220,11 +215,11 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.attach_money_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                   suffixText: 'ETB',
                   suffixStyle: TextStyle(
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -233,9 +228,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                     return 'Amount is required';
                   }
                   final n = double.tryParse(val);
-                  if (n == null || n <= 0) {
-                    return 'Enter valid amount';
-                  }
+                  if (n == null || n <= 0) return 'Enter valid amount';
                   return null;
                 },
               ),
@@ -251,7 +244,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.rotate_right_rounded,
-                    color: AppColors.textMid,
+                    color: Color(0xFF5C4A2A),
                   ),
                 ),
               ),
@@ -272,17 +265,17 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                           () => _selectedStatus = val ?? _selectedStatus,
                         ),
                         activeColor: status == 'Paid'
-                            ? AppColors.paid
-                            : AppColors.notPaid,
+                            ? const Color(0xFF4A7C59)
+                            : const Color(0xFFB85C38),
                       ),
                       Text(
                         status,
                         style: TextStyle(
                           color: _selectedStatus == status
                               ? (status == 'Paid'
-                                    ? AppColors.paid
-                                    : AppColors.notPaid)
-                              : AppColors.textMid,
+                                    ? const Color(0xFF4A7C59)
+                                    : const Color(0xFFB85C38))
+                              : const Color(0xFF5C4A2A),
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                         ),
@@ -294,7 +287,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
               ),
               const SizedBox(height: 32),
 
-              // Save button — minimized width, centered
+              // Save button
               Center(
                 child: SizedBox(
                   height: 46,
@@ -306,13 +299,13 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                             height: 16,
                             child: CircularProgressIndicator(
                               strokeWidth: 2,
-                              color: AppColors.white,
+                              color: Color(0xFFFFFFFF),
                             ),
                           )
                         : const Icon(Icons.save_rounded),
                     label: Text(_isSaving ? 'Saving...' : 'Save Changes'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.accent,
+                      backgroundColor: const Color(0xFF4A7C59),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 28,
                         vertical: 10,
@@ -327,7 +320,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
                   onPressed: () => Navigator.pop(context),
                   child: const Text(
                     'Discard Changes',
-                    style: TextStyle(color: AppColors.textMid),
+                    style: TextStyle(color: Color(0xFF5C4A2A)),
                   ),
                 ),
               ),
@@ -342,7 +335,7 @@ class _EditMemberScreenState extends State<EditMemberScreen> {
     return Text(
       text,
       style: const TextStyle(
-        color: AppColors.textDark,
+        color: Color(0xFF2C1F0E),
         fontWeight: FontWeight.w600,
         fontSize: 14,
       ),
