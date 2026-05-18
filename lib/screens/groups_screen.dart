@@ -247,8 +247,6 @@ class _GroupCard extends StatelessWidget {
   }
 }
 
-// ─── Add Group Bottom Sheet ───────────────────────────────────────────────────
-
 class _AddGroupSheet extends StatefulWidget {
   const _AddGroupSheet();
 
